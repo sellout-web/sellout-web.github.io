@@ -9,6 +9,13 @@
     rel="stylesheet"
   >
   <style>
+  .card-img-top {
+    width: 100%;
+    height: 150px; /* Set a fixed height for thumbnails */
+    object-fit: cover; /* Ensures the image is cropped proportionally */
+  }
+</style>
+  <style>
     .item-card {
       text-align: center;
       margin-bottom: 20px;
@@ -51,9 +58,14 @@
 
   <script>
     const items = [
-      { id: 1, name: "ELC fisher price robot toy", price: "100 QAR", images: ["images/cartoy1.jpeg", "images/caartoy2.jpg"] },
-      { id: 2, name: "ELC Vtech tiny tot driver", price: "200 QAR", images: ["images/drivingtoy1.jpeg", "images/item2-2.jpg"] },
-      { id: 3, name: "Stroller", price: "80 QAR", images: ["images/stroll1.jpeg", "images/item3-2.jpg"] },
+      { id: 1, name: "ELC fisher price robot toy", price: "100 QAR", images: ["images/cartoy1.jpeg", "images/cartoy2.jpg", "images/cartoy3.jpg"] },
+      { id: 2, name: "ELC Vtech tiny tot driver", price: "200 QAR", images: ["images/drivingtoy1.jpeg", "images/drivingtoy2.jpg", "images/drivingtoy3.jpg", "images/drivingtoy4.jpg"] },
+      { id: 3, name: "Stroller", price: "80 QAR", images: ["images/stroll1.jpeg", "images/stroll2.jpg", "images/stroll3.jpg"] },
+      { id: 4, name: "IKEA Cloth Hanger", price: "80 QAR", images: ["images/hanger1.jpeg", "images/hanger2.jpg", "images/hanger3.jpg", "images/hanger4.jpg"] },
+      { id: 5, name: "Remote Controlled stand fan", price: "80 QAR", images: ["images/standfan1.jpg", "images/standfan2.jpg"] },
+      { id: 6, name: "Turkish Bread basket", price: "80 QAR", images: ["images/tbb1.jpg", "images/tbb2.jpg", "images/tbb3.jpg"] },
+      { id: 7, name: "IEKA Plastic basket wooden look", price: "40 QAR", images: ["images/ikeab1.jpg", "images/ikeab2.jpg", "images/ikeab3.jpg", "images/ikeab4.jpg", "images/ikeab5.jpeg"] },
+      { id: 8, name: "Ride around car with storage", price: "40 QAR", images: ["images/ridecar1.jpg", "images/ridecar2.jpg", "images/ridecar3.jpeg", "images/ridecar4.jpg", "images/ridecar5.jpg"] },
       // Add more items here...
     ];
 
