@@ -36,7 +36,7 @@
   </style>
 </head>
 <body>
-  <div class="container py-4">
+  <!-- <div class="container py-4">
     <h1 class="text-center mb-4">Items for Sale</h1>
     <div id="books-section">
       <h2 class="section-header">Books</h2>
@@ -58,7 +58,67 @@
       <h2 class="section-header">Miscellaneous</h2>
       <div class="row" id="misc-container"></div>
     </div>
+  </div> -->
+
+  <!-- Books Section -->
+<div id="books-section">
+  <h2 class="section-header">
+    <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#books-collapse" aria-expanded="true" aria-controls="books-collapse">
+      Books
+    </button>
+  </h2>
+  <div class="collapse show" id="books-collapse">
+    <div class="row" id="books-container"></div>
   </div>
+</div>
+
+<!-- Electronics Section -->
+<div id="electronics-section">
+  <h2 class="section-header">
+    <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#electronics-collapse" aria-expanded="true" aria-controls="electronics-collapse">
+      Electronics/Toys
+    </button>
+  </h2>
+  <div class="collapse show" id="electronics-collapse">
+    <div class="row" id="electronics-container"></div>
+  </div>
+</div>
+
+<!-- Furniture Section -->
+<div id="furniture-section">
+  <h2 class="section-header">
+    <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#furniture-collapse" aria-expanded="true" aria-controls="furniture-collapse">
+      Furniture
+    </button>
+  </h2>
+  <div class="collapse show" id="furniture-collapse">
+    <div class="row" id="furniture-container"></div>
+  </div>
+</div>
+
+<!-- Crockery Section -->
+<div id="crockery-section">
+  <h2 class="section-header">
+    <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#crockery-collapse" aria-expanded="true" aria-controls="crockery-collapse">
+      Crockery etc
+    </button>
+  </h2>
+  <div class="collapse show" id="crockery-collapse">
+    <div class="row" id="crockery-container"></div>
+  </div>
+</div>
+
+<!-- Miscellaneous Section -->
+<div id="misc-section">
+  <h2 class="section-header">
+    <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#misc-collapse" aria-expanded="true" aria-controls="misc-collapse">
+      Miscellaneous
+    </button>
+  </h2>
+  <div class="collapse show" id="misc-collapse">
+    <div class="row" id="misc-container"></div>
+  </div>
+</div>
 
   <!-- Item Carousel Modal -->
   <div class="modal fade" id="itemModal" tabindex="-1" aria-hidden="true">
