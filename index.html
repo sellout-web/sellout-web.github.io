@@ -34,6 +34,16 @@
       border-bottom: 2px solid #ddd;
     }
   </style>
+  <style>
+  .booked-overlay {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+</style>
 </head>
 <body>
   <!-- <div class="container py-4">
@@ -141,53 +151,56 @@
 
   <script>
     const items = [
-      { id: 100, name: "ELC fisher price robot toy", category: "Electronics", price: "60 QAR", images: ["images/cartoy1.jpeg", "images/cartoy2.jpg", "images/cartoy3.jpg"] },
-      { id: 101, name: "ELC Vtech tiny tot driver", category: "Electronics", price: "60 QAR", images: ["images/drivingtoy1.jpeg", "images/drivingtoy2.jpg", "images/drivingtoy3.jpg", "images/drivingtoy4.jpg"] },
-      { id: 102, name: "Ride around car with storage", category: "Electronics", price: "40 QAR", images: ["images/ridecar1.jpg", "images/ridecar2.jpg", "images/ridecar3.jpeg", "images/ridecar4.jpg", "images/ridecar5.jpg"] },
-      { id: 103, name: "Smartrike toddler scooter (1-5 years) with adjustable handle, metal body", category: "Electronics", price: "200 QAR", images: ["images/scooter1.jpeg", "images/scooter2.jpeg", "images/scooter3.jpeg"] },
-      { id: 104, name: "Doll house with accessories ", category: "Electronics", price: "100 QAR", images: ["images/dollHouse1.jpeg", "images/dollHouse2.jpeg"] },
-      { id: 105, name: "Russell Hobbs panini press with collection tray 100% working condition", category: "Electronics", price: "60 QAR", images: ["images/toast1.jpeg", "images/toast2.jpeg", "images/toast3.jpeg", "images/toast4.jpeg"] },
+      { id: 100, name: "ELC fisher price robot toy", category: "Electronics", price: "60 QAR", images: ["images/cartoy1.jpeg", "images/cartoy2.jpg", "images/cartoy3.jpg"] , booked: false},
+      { id: 101, name: "ELC Vtech tiny tot driver", category: "Electronics", price: "60 QAR", images: ["images/drivingtoy1.jpeg", "images/drivingtoy2.jpg", "images/drivingtoy3.jpg", "images/drivingtoy4.jpg"], booked: false },
+      { id: 102, name: "Ride around car with storage", category: "Electronics", price: "40 QAR", images: ["images/ridecar1.jpg", "images/ridecar2.jpg", "images/ridecar3.jpeg", "images/ridecar4.jpg", "images/ridecar5.jpg"], booked: false },
+      { id: 103, name: "Smartrike toddler scooter (1-5 years) with adjustable handle, metal body", category: "Electronics", price: "200 QAR", images: ["images/scooter1.jpeg", "images/scooter2.jpeg", "images/scooter3.jpeg"], booked: false },
+      { id: 104, name: "Doll house with accessories ", category: "Electronics", price: "100 QAR", images: ["images/dollHouse1.jpeg", "images/dollHouse2.jpeg"], booked: false },
+      { id: 105, name: "Russell Hobbs panini press with collection tray 100% working condition", category: "Electronics", price: "60 QAR", images: ["images/toast1.jpeg", "images/toast2.jpeg", "images/toast3.jpeg", "images/toast4.jpeg"], booked: false },
 
 
-      { id: 201, name: "Set of books", category: "Books", price: "40 QAR", images: ["images/bookSet.jpeg"] },
-      { id: 202, name: "Priddy books - flap book and animal books - both for 40 QAR", category: "Books", price: "25 QAR each", images: ["images/91_1.jpeg","images/91_2.jpeg","images/91_3.jpeg"] },
-      { id: 203, name: "Board books for kids - all for 80 QAR", category: "Books", price: "20 QAR each", images: ["images/92_1.jpeg","images/92_2.jpeg","images/92_3.jpeg"] },
-      { id: 204, name: "Children story books from HBKU Press/Scholastic - all for 50 QAR", category: "Books", price: "12 QAR each", images: ["images/93_1.jpeg","images/93_2.jpeg","images/93_3.jpeg","images/93_4.jpeg"] },
-      { id: 205, name: "Usborne question answer books with flaps - both for 40 QAR", category: "Books", price: "25 QAR each", images: ["images/94_1.jpeg","images/94_2.jpeg","images/94_3.jpeg"] },
-      { id: 206, name: "Set of children story books", category: "Books", price: "All for 30 QAR", images: ["images/95_1.jpeg"] },
-      { id: 207, name: "Good condition hard cover books for children - all for 100 QAR", category: "Books", price: "20 QAR each", images: ["images/96_1.jpeg","images/96_2.jpeg","images/96_3.jpeg","images/96_4.jpeg","images/96_5.jpeg","images/96_6.jpeg"] },
-      { id: 208, name: "Story books for children - all for 70 QAR", category: "Books", price: "20 QAR each", images: ["images/97_1.jpeg","images/97_2.jpeg","images/97_3.jpeg","images/97_4.jpeg","images/97_5.jpeg"] },
-      { id: 209, name: "Phonics books set for young learners.", category: "Books", price: "All for 20 QAR", images: ["images/98_1.jpeg"] },
+      { id: 201, name: "Set of books", category: "Books", price: "40 QAR", images: ["images/bookSet.jpeg"], booked: false },
+      { id: 202, name: "Priddy books - flap book and animal books - both for 40 QAR", category: "Books", price: "25 QAR each", images: ["images/91_1.jpeg","images/91_2.jpeg","images/91_3.jpeg"] , booked: false},
+      { id: 203, name: "Board books for kids - all for 80 QAR", category: "Books", price: "20 QAR each", images: ["images/92_1.jpeg","images/92_2.jpeg","images/92_3.jpeg"], booked: false },
+      { id: 204, name: "Children story books from HBKU Press/Scholastic - all for 50 QAR", category: "Books", price: "12 QAR each", images: ["images/93_1.jpeg","images/93_2.jpeg","images/93_3.jpeg","images/93_4.jpeg"], booked: false },      
+      { id: 206, name: "Set of children story books", category: "Books", price: "All for 30 QAR", images: ["images/95_1.jpeg"], booked: false },
+      { id: 207, name: "Good condition hard cover books for children - all for 100 QAR", category: "Books", price: "20 QAR each", images: ["images/96_1.jpeg","images/96_2.jpeg","images/96_3.jpeg","images/96_4.jpeg","images/96_5.jpeg","images/96_6.jpeg"], booked: false },
+      { id: 208, name: "Story books for children - all for 70 QAR", category: "Books", price: "20 QAR each", images: ["images/97_1.jpeg","images/97_2.jpeg","images/97_3.jpeg","images/97_4.jpeg","images/97_5.jpeg"], booked: false },
+      { id: 209, name: "Phonics books set for young learners.", category: "Books", price: "All for 20 QAR", images: ["images/98_1.jpeg"], booked: false },
+      { id: 205, name: "Usborne question answer books with flaps - both for 40 QAR", category: "Books", price: "25 QAR each", images: ["images/94_1.jpeg","images/94_2.jpeg","images/94_3.jpeg"], booked: true },
 
 
 
-      { id: 301, name: "Graco DuoGlider, Rascal Swing and Rocker with One-Hand Recline Lever", category: "Furniture", price: "300 QAR", images: ["images/glider1.jpeg", "images/glider2.jpeg", "images/glider3.jpeg", "images/glider4.jpeg"] },
-      { id: 302, name: "Stroller", category: "Furniture", price: "80 QAR", images: ["images/stroll1.jpeg", "images/stroll2.jpg", "images/stroll3.jpg"] },
-      { id: 303, name: "IKEA Cloth Hanger", category: "Furniture", price: "80 QAR", images: ["images/hanger1.jpeg", "images/hanger2.jpg", "images/hanger3.jpg", "images/hanger4.jpg"] },
-      { id: 304, name: "IKEA office desk ergonomic chair", category: "Furniture", price: "250 QAR", images: ["images/tabChair1.jpeg", "images/tabChair2.jpeg", "images/tabChair3.jpeg", "images/tabChair4.jpeg"] },
+      { id: 301, name: "Graco DuoGlider, Rascal Swing and Rocker with One-Hand Recline Lever", category: "Furniture", price: "300 QAR", images: ["images/glider1.jpeg", "images/glider2.jpeg", "images/glider3.jpeg", "images/glider4.jpeg"], booked: false },
+      { id: 302, name: "Stroller", category: "Furniture", price: "80 QAR", images: ["images/stroll1.jpeg", "images/stroll2.jpg", "images/stroll3.jpg"], booked: false },
+      { id: 303, name: "IKEA Cloth Hanger", category: "Furniture", price: "80 QAR", images: ["images/hanger1.jpeg", "images/hanger2.jpg", "images/hanger3.jpg", "images/hanger4.jpg"], booked: false },
+      { id: 304, name: "IKEA office desk ergonomic chair", category: "Furniture", price: "250 QAR", images: ["images/tabChair1.jpeg", "images/tabChair2.jpeg", "images/tabChair3.jpeg", "images/tabChair4.jpeg"], booked: false },
 
-      { id: 305, name: "Car seat working condition, barely used", category: "Furniture", price: "150 QAR", images: ["images/carseat1.jpeg", "images/carseat2.jpeg", "images/carseat3.jpeg"] },
-
-
-      { id: 401, name: "Turkish Bread basket", category: "Crockery", price: "20 QAR", images: ["images/tbb1.jpg", "images/tbb2.jpg", "images/tbb3.jpg"] },
-      { id: 402, name: "IEKA Plastic basket wooden look", category: "Crockery", price: "35 QAR", images: ["images/ikeab1.jpg", "images/ikeab2.jpg", "images/ikeab3.jpg", "images/ikeab4.jpg", "images/ikeab5.jpeg"] },
-
-      { id: 403, name: "5 ceramic curry bowls+melamine(free)", category: "Crockery", price: "20 QAR", images: ["images/bowls1.jpeg", "images/bowls2.jpeg"] },
-
-      { id: 404, name: "Home box ceramic square serving Dish like new.", category: "Crockery", price: "20 QAR", images: ["images/servingDish1.jpeg", "images/servingDish2.jpeg", "images/servingDish3.jpeg", "images/servingDish4.jpeg"] },
-
-      { id: 405, name: "Big Dinner plates X8", category: "Crockery", price: "10 QAR", images: ["images/bigplates1.jpeg", "images/bigplates2.jpeg"] },
-      { id: 406, name: "Small Sncaks plates X6", category: "Crockery", price: "10 QAR", images: ["images/smallplates1.jpeg", "images/smallplates2.jpeg"] },
+      { id: 305, name: "Car seat working condition, barely used", category: "Furniture", price: "150 QAR", images: ["images/carseat1.jpeg", "images/carseat2.jpeg", "images/carseat3.jpeg"], booked: false },
 
 
-      { id: 501, name: "Ikea Glass jug", category: "Crockery", price: "20 QAR", images: ["images/jug1.jpeg", "images/jug2.jpeg", "images/jug3.jpeg"] },
-      { id: 502, name: "Set of 6 small juice glasses", category: "Crockery", price: "20 QAR", images: ["images/juice_glass_set.jpeg"] },
-      { id: 503, name: "Set of 6 big glasses with golden rim", category: "Crockery", price: "20 QAR", images: ["images/godlen_rim_water_glass_set.jpeg"] },
+      { id: 401, name: "Turkish Bread basket", category: "Crockery", price: "20 QAR", images: ["images/tbb1.jpg", "images/tbb2.jpg", "images/tbb3.jpg"], booked: false },
+      { id: 402, name: "IEKA Plastic basket wooden look", category: "Crockery", price: "35 QAR", images: ["images/ikeab1.jpg", "images/ikeab2.jpg", "images/ikeab3.jpg", "images/ikeab4.jpg", "images/ikeab5.jpeg"], booked: false },
+
+      { id: 403, name: "5 ceramic curry bowls+melamine(free)", category: "Crockery", price: "20 QAR", images: ["images/bowls1.jpeg", "images/bowls2.jpeg"], booked: false },
+
+      { id: 404, name: "Home box ceramic square serving Dish like new.", category: "Crockery", price: "20 QAR", images: ["images/servingDish1.jpeg", "images/servingDish2.jpeg", "images/servingDish3.jpeg", "images/servingDish4.jpeg"], booked: false },
+
+      { id: 405, name: "Big Dinner plates X8", category: "Crockery", price: "10 QAR", images: ["images/bigplates1.jpeg", "images/bigplates2.jpeg"], booked: false },
+      { id: 406, name: "Small Sncaks plates X6", category: "Crockery", price: "10 QAR", images: ["images/smallplates1.jpeg", "images/smallplates2.jpeg"], booked: false },
 
 
-      { id: 601, name: "Pink big storage box in good condition", category: "Miscellaneous", price: "20 QAR", images: ["images/stbox1.jpeg", "images/stbox2.jpeg"] },
-      { id: 602, name: "Hardly used Dish storage box with water collection tray.", category: "Miscellaneous", price: "20 QAR", images: ["images/dish_st1.jpeg", "images/dish_st2.jpeg", "images/dish_st3.jpeg"] },
-      { id: 603, name: "Screws, hammer and magnetic screw driver", category: "Miscellaneous", price: "40 QAR", images: ["images/screw1.jpeg", "images/screw2.jpeg", "images/screw3.jpeg", "images/screw4.jpeg"] },
+      { id: 501, name: "Ikea Glass jug", category: "Crockery", price: "20 QAR", images: ["images/jug1.jpeg", "images/jug2.jpeg", "images/jug3.jpeg"], booked: false },
+      { id: 502, name: "Set of 6 small juice glasses", category: "Crockery", price: "20 QAR", images: ["images/juice_glass_set.jpeg"], booked: false },
+      { id: 503, name: "Set of 6 big glasses with golden rim", category: "Crockery", price: "20 QAR", images: ["images/godlen_rim_water_glass_set.jpeg"], booked: false },
+      { id: 504, name: "Mix of small ceramic bowls and oval serving dish", category: "Crockery", price: "10 QAR", images: ["images/bowlSet1.jpeg", "images/bowlSet2.jpeg"], booked: false },
+
+      
+
+
+      { id: 601, name: "Pink big storage box in good condition", category: "Miscellaneous", price: "20 QAR", images: ["images/stbox1.jpeg", "images/stbox2.jpeg"], booked: false },
+      { id: 602, name: "Hardly used Dish storage box with water collection tray.", category: "Miscellaneous", price: "20 QAR", images: ["images/dish_st1.jpeg", "images/dish_st2.jpeg", "images/dish_st3.jpeg"], booked: false },
+      { id: 603, name: "Screws, hammer and magnetic screw driver", category: "Miscellaneous", price: "40 QAR", images: ["images/screw1.jpeg", "images/screw2.jpeg", "images/screw3.jpeg", "images/screw4.jpeg"], booked: false },
       // Add more items here with appropriate categories...
     ];
 
@@ -200,39 +213,48 @@
     };
 
     const loadItems = () => {
-      const storedDemand = JSON.parse(localStorage.getItem('itemDemand')) || {};
-      
-      items.forEach(item => {
-        if (!storedDemand[item.id]) storedDemand[item.id] = 0;
-      });
+  const storedDemand = JSON.parse(localStorage.getItem('itemDemand')) || {};
+  
+  // Initialize demand for items
+  items.forEach(item => {
+    if (!storedDemand[item.id]) storedDemand[item.id] = 0;
+  });
 
-      // Sort items by demand
-      items.sort((a, b) => (storedDemand[b.id] || 0) - (storedDemand[a.id] || 0));
+  // Sort items by demand
+  items.sort((a, b) => (storedDemand[b.id] || 0) - (storedDemand[a.id] || 0));
 
-      // Update DOM
-      for (const [category, containerId] of Object.entries(categories)) {
-        const container = document.getElementById(containerId);
-        container.innerHTML = items
-          .filter(item => item.category === category)
-          .map(item => `
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="card item-card">
-                <img src="${item.images[0]}" class="card-img-top" alt="${item.name}" style="cursor:pointer;" onclick="openCarousel(${item.id})">
-                <div class="card-body">
-                  <h5 class="card-title">${item.name}</h5>
-                  <p class="card-text">${item.price}</p>
-                  <a href="https://wa.me/97466081840?text=I am interested in ${item.name}" class="btn btn-success d-block mb-2" target="_blank">Contact on WhatsApp</a>
-                  <button class="btn btn-primary btn-demand" onclick="incrementDemand(${item.id})">
-                    I want this <span class="badge bg-light text-dark ms-2">${storedDemand[item.id]}</span>
-                  </button>
+  // Update DOM
+  for (const [category, containerId] of Object.entries(categories)) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = items
+      .filter(item => item.category === category)
+      .map(item => `
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card item-card position-relative">
+            <img src="${item.images[0]}" class="card-img-top" alt="${item.name}" style="cursor:pointer;" onclick="openCarousel(${item.id})">
+            ${item.booked ? `
+              <div class="booked-overlay position-absolute w-100 h-100 top-0 start-0 d-flex align-items-center justify-content-center text-white">
+                <div class="bg-dark bg-opacity-75 w-100 h-100 d-flex align-items-center justify-content-center">
+                  <h5>Booked</h5>
                 </div>
               </div>
+            ` : ''}
+            <div class="card-body">
+              <h5 class="card-title">${item.name}</h5>
+              <p class="card-text">${item.price}</p>
+              <a href="https://wa.me/97466081840?text=I am interested in ${item.name}" class="btn btn-success d-block mb-2" target="_blank">Contact on WhatsApp</a>
+              <button class="btn btn-primary btn-demand" onclick="incrementDemand(${item.id})">
+                I want this <span class="badge bg-light text-dark ms-2">${storedDemand[item.id]}</span>
+              </button>
             </div>
-          `).join("");
-      }
+          </div>
+        </div>
+      `).join("");
+  }
 
-      localStorage.setItem('itemDemand', JSON.stringify(storedDemand));
-    };
+  // Update stored demand in localStorage
+  localStorage.setItem('itemDemand', JSON.stringify(storedDemand));
+};
 
     const openCarousel = (itemId) => {
   const item = items.find(i => i.id === itemId);
